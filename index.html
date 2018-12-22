@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>jQueryAPI</title>
+    <style>
+        .red {
+            background: red;
+        }
+
+        .green {
+            background: green;
+        }
+
+        .yellow {
+            background: yellow;
+        }
+
+        .pink {
+            background: pink;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="div1">
+        <p>hello</p>
+    </div>
+    <div class="div2">
+        <p>hello</p>
+    </div>
+    <div class="div3">
+        <p>hello</p>
+    </div>
+    <script>
+        window.jQuery = function (node) {
+            return {
+                addClass: function (classNameList) {
+                    let divs = document.querySelectorAll(node)
+
+                    for (let i = 0; i < divs.length; i++) {
+                        for (let key in classNameList) {
+                            let methodName = classNameList[key] ? 'add' : 'remove'
+                            divs[i].classList[methodName](key)
+                        }
+                    }
+                },
+                addText: function (text) {
+                    let divs = document.querySelectorAll(node)
+
+                    for (let i = 0; i < divs.length; i++) {
+                        divs[i].textContent = text
+                    }
+                }
+
+
+
+            }
+        }
+
+        window.$ = jQuery
+
+        let $div = $('div')
+        $div.addClass.call($div, {
+            red: false,
+            pink: true
+        })
+
+        $div.addText.call($div, 'hi')
+    </script>
+</body>
+
+</html>
